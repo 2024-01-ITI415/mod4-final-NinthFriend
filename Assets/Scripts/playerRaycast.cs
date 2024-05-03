@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerRaycast : MonoBehaviour
 {
-    public GameObject crosshair;
+    public GameObject intText;
     public float interactionDistance; 
     public LayerMask layers;
 
@@ -13,11 +13,11 @@ public class playerRaycast : MonoBehaviour
         // Collect information whenever a raycast hits an object
         RaycastHit hit;
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance, layers))
         {
             if(hit.collider.gameObject.GetComponent<door>())
             {
-                crosshair.SetActive(true);
+                intText.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.E))
                 {
                     hit.collider.gameObject.GetComponent<door>().openClose();
@@ -25,12 +25,12 @@ public class playerRaycast : MonoBehaviour
             }
             else
             {
-                crosshair.SetActive(false);
+                intText.SetActive(false);
             }
         }
         else
         {
-            crosshair.SetActive(false);
+            intText.SetActive(false);
         }
     }
 }
