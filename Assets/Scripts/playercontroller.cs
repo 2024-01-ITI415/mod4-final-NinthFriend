@@ -32,9 +32,9 @@ public class playercontroller : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = "Collect " + count.ToString() + " / 40 cubes!";
 
-        if (count >= 20)
+        if (count >= 40)
         {
             winTextObject.SetActive(true);
         }
