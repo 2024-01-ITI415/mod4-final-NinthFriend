@@ -7,8 +7,14 @@ public class playercontroller : MonoBehaviour
 {
     private int count;
 
+    [Header("Text Objects")]
     public Text countText;
     public GameObject winTextObject;
+
+    [Header("Audio")]
+    [SerializeField] public AudioSource pickUpAudioSource = null;
+    [SerializeField] public float pickUpDelay = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +34,7 @@ public class playercontroller : MonoBehaviour
     {
         countText.text = "Count: " + count.ToString();
 
-        if (count >= 64)
+        if (count >= 20)
         {
             winTextObject.SetActive(true);
         }
@@ -40,6 +46,7 @@ public class playercontroller : MonoBehaviour
         if(other.gameObject.CompareTag("pickup"))
         {
             other.gameObject.SetActive(false);
+            pickUpAudioSource.PlayDelayed(pickUpDelay);
             count += 1;
 
             SetCountText();
